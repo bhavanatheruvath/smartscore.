@@ -1,0 +1,110 @@
+/* --- 1. Layout Structure --- */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f4f7f6; /* Light grey background for content */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- 2. Sidebar (The Navigation) --- */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%); /* Same Blue Gradient */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.menu-item {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+}
+
+.menu-item:hover, .menu-item.active {
+    background: rgba(255, 255, 255, 0.2); /* Glass effect */
+}
+
+/* --- 3. Main Content Area --- */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #333;
+    font-size: 28px;
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+/* --- 4. Cards (Stats & Widgets) --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+    border-left: 5px solid #1e3c72; /* Accent Color */
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.stat-card p {
+    margin: 10px 0 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+}

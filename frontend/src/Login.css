@@ -1,0 +1,82 @@
+/* 1. The Background: A professional tech gradient */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. The Card: White box with shadow */
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* 3. The Title */
+.login-title {
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+/* 4. Input Fields */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #666;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box; /* Ensures padding doesn't break width */
+  transition: border-color 0.3s;
+}
+
+.input-field:focus {
+  border-color: #1e3c72;
+  outline: none;
+}
+
+/* 5. The Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #1e3c72;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-btn:hover {
+  background: #2a5298;
+}
+
+/* 6. Error Message */
+.error-msg {
+  color: #e74c3c;
+  margin-top: 15px;
+  font-size: 14px;
+}
