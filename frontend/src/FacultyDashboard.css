@@ -1,0 +1,145 @@
+/* --- Container Layout --- */
+.faculty-container {
+  min-height: 100vh;
+  background-color: #f4f7f6;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* --- Navigation --- */
+.faculty-nav {
+  background: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.nav-brand {
+  font-weight: 700;
+  font-size: 20px;
+  color: #2c3e50;
+}
+
+.logout-link {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* --- Main Content Area --- */
+.faculty-content {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* --- Profile Header --- */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+.profile-info h1 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 28px;
+}
+
+.profile-info p {
+  margin: 5px 0 0 0;
+  color: #7f8c8d;
+}
+
+/* --- New Session Button --- */
+.new-session-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+  transition: transform 0.2s;
+}
+
+.new-session-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* --- Table Styling --- */
+.sessions-list h2 {
+  font-size: 18px;
+  color: #34495e;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px 25px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background-color: #fafbfc;
+  color: #7f8c8d;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+td {
+  color: #2c3e50;
+  font-size: 15px;
+}
+
+/* --- Status Badges --- */
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-badge.completed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.resume-btn {
+  background: none;
+  border: 1px solid #667eea;
+  color: #667eea;
+  padding: 5px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.resume-btn:hover {
+  background: #667eea;
+  color: white;
+}

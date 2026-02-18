@@ -1,13 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./AdminDashboard.css";
 import Courses from "./Courses";
+import Batches from "./Batches";
+import Students from "./Students";
+import Users from "./Users";
 
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("Overview");
+  const [stats, setStats] = useState({
+    totalStudents: 0,
+    totalCourses: 0,
+    totalUsers: 0,
+    systemStatus: "Active",
+  });
+
+  // Fetch stats on component load
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
+  const fetchStats = async () => {
+    try {
+      const [studentsRes, coursesRes, usersRes] = await Promise.all([
+        axios.get("http://localhost:8000/students"),
+        axios.get("http://localhost:8000/courses"),
+        axios.get("http://localhost:8000/users"),
+      ]);
+
+      setStats({
+        totalStudents: studentsRes.data.length,
+        totalCourses: coursesRes.data.length,
+        totalUsers: usersRes.data.length,
+        systemStatus: "Active",
+      });
+    } catch (error) {
+      console.error("Error fetching stats:", error);
+    }
+  };
 
   // Simple logout function
   const handleLogout = () => {
-    window.location.href = "/"; // Reloads page and goes to Login
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("username");
+    window.location.href = "/";
   };
 
   return (
@@ -28,7 +65,25 @@ function AdminDashboard() {
         >
           📚 Manage Courses
         </div>
-
+        <div
+          className={`menu-item ${activeTab === "Users" ? "active" : ""}`}
+          onClick={() => setActiveTab("Users")}
+        >
+          👤 Manage Users
+        </div>
+        {}
+        <div
+          className={`menu-item ${activeTab === "Batches" ? "active" : ""}`}
+          onClick={() => setActiveTab("Batches")}
+        >
+          📅 Manage Batches
+        </div>
+        <div
+          className={`menu-item ${activeTab === "Students" ? "active" : ""}`}
+          onClick={() => setActiveTab("Students")}
+        >
+          🎓 Manage Students
+        </div>
         <div
           className={`menu-item ${activeTab === "Exams" ? "active" : ""}`}
           onClick={() => setActiveTab("Exams")}
@@ -51,38 +106,34 @@ function AdminDashboard() {
           <div className="stats-grid">
             <div className="stat-card">
               <h3>Total Students</h3>
-              <p>0</p>
+              <p>{stats.totalStudents}</p>
             </div>
             <div className="stat-card">
-              <h3>Active Courses</h3>
-              <p>0</p>
+              <h3>Total Courses</h3>
+              <p>{stats.totalCourses}</p>
             </div>
             <div className="stat-card">
-              <h3>Pending Exams</h3>
-              <p>0</p>
+              <h3>Total Batches</h3>
+              <p>{stats.totalBatches}</p>
             </div>
             <div className="stat-card">
               <h3>System Status</h3>
-              <p style={{ color: "green" }}>Active</p>
+              <p style={{ color: "green" }}>{stats.systemStatus}</p>
             </div>
           </div>
         )}
 
-        {activeTab === "Students" && (
-          <div className="stat-card">
-            <h2>Student Management</h2>
-            <p>Here you will see the table of students later.</p>
-          </div>
-        )}
+        {activeTab === "Students" && <Students />}
+        {activeTab === "Users" && <Users />}
 
         {/* You can add more sections here later */}
 
         {activeTab === "Courses" && <Courses />}
+
+        {activeTab === "Batches" && <Batches />}
       </div>
     </div>
   );
 }
 
 export default AdminDashboard;
-
-// hfbb

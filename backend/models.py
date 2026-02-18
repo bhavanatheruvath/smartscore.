@@ -18,13 +18,18 @@ class ExamStatus(str, enum.Enum):
 class User(Base):
     __tablename__ = "users"
 
-    user_id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String(50), primary_key=True, index=True)
     username = Column(String(50), unique=True, index=True)
     password_hash = Column(String(100))
     role = Column(Enum(UserRole))
 
     # Relationship: A faculty user can create many reports
     reports = relationship("ReportArchive", back_populates="faculty")
+    
+    # Property to return password for JSON serialization
+    @property
+    def password(self):
+        return self.password_hash
 
 # --- 2. Course Master [cite: 105] ---
 class CourseMaster(Base):
@@ -41,7 +46,7 @@ class CourseMaster(Base):
 class BatchMaster(Base):
     __tablename__ = "batch_master"
 
-    batch_id = Column(Integer, primary_key=True, index=True) # PK
+    batch_id = Column(String(20), primary_key=True, index=True) # PK
     batch_name = Column(String(50)) # e.g., "2024-2026 MCA"
     current_semester = Column(Integer)
 
@@ -54,7 +59,7 @@ class StudentMaster(Base):
 
     ktu_id = Column(String(20), primary_key=True, index=True) # PK
     student_name = Column(String(100))
-    batch_id = Column(Integer, ForeignKey("batch_master.batch_id")) # FK
+    batch_id = Column(String(20), ForeignKey("batch_master.batch_id")) #FK
 
     # Relationships
     batch = relationship("BatchMaster", back_populates="students")
@@ -101,7 +106,7 @@ class ReportArchive(Base):
 
     report_id = Column(Integer, primary_key=True, index=True) # PK
     exam_id = Column(Integer, ForeignKey("exam_config.exam_id")) # FK
-    faculty_id = Column(Integer, ForeignKey("users.user_id")) # FK
+    faculty_id = Column(String(50), ForeignKey("users.user_id")) # FK
     
     file_path = Column(String(255)) # Path to PDF/Excel file
     
